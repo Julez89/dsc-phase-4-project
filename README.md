@@ -42,11 +42,16 @@ In summary, I took the following steps:
 
 ## Modeling
 
-For my customer, the main priority is to be able to identify positive tweets, so that they can react to those positive experiences. Therefore, I'm prioritizing precision and trying to minimize false negatives. For my business objective of understanding and leveraging positive sentiment, we want to ensure that the insights derived from the model are reliable and genuinely reflect positive sentiments. High precision helps you achieve this by reducing the inclusion of unrelated or negative tweets in the positive sentiment category.
+For my customer, the main priority is to be able to identify positive tweets, so that they can react to those positive experiences. Therefore, I'm prioritizing precision and trying to minimize false negatives.
+For my business objective of understanding and leveraging positive sentiment, we want to ensure that the insights derived from the model are reliable and genuinely reflect positive sentiments.High precision helps you achieve this by reducing the inclusion of unrelated or negative tweets in the positive sentiment category.
+
 My preparation steps included the preprocessing of data, removing stopwords, tokenization and random oversampling. 
 To follow an iterative approach, I am starting with a very simple, vanilla logistic regression model, oversampling and count vectorizer which already performed ok (weighted avg precision= 0.70). 
-As next model, I'm adding TweetTokenizer and saw a slight improvement (weighted avg precision =0.71). The change to use TfIDF vectorizer instead of count vectorizer did not change anything. Next, I am trying a Random Forest model with the standard hyperparameters. This model already improved (precision=0.72). 
-Next, I'm using GridSearchCV for both the logistic regression and the random forest model to decide which model works best with tuned hyperparameters. Even though there is only a small difference, I'm choosing the random forest model as it has a slightly higher accuracy while having the same precision.
+
+As next model, I'm adding TweetTokenizer and saw a slight improvement (weighted avg precision =0.71). The change to use TfIDF vectorizer instead of count vectorizer did not change anything. 
+Next, I am trying a Random Forest model with the standard hyperparameters. This model already improved (precision=0.72). 
+Next, I'm using GridSearchCV for both the logistic regression and the random forest model to decide which model works best with tuned hyperparameters. 
+Even though there is only a small difference, I'm choosing the random forest model as it has a slightly higher accuracy while having the same precision.
 
 ![model](https://github.com/Julez89/dsc-phase-4-project/blob/main/images/model.png)
 
@@ -55,6 +60,8 @@ Next, I'm using GridSearchCV for both the logistic regression and the random for
 My final model is a tuned random forest model with CountVectorizer, random oversampling and specified parameters such as minimum sample leafs, minimum sample split and the number of estimators. 
 My final model has a weighted average precision of .73. When my model predicts positive cases, it is correct 76% of the time which is acceptable. A limitation is that the model is not as great in predicting non-positive sentiments. 
 We can improve the model by collecting more data.
+
+![conf](https://github.com/Julez89/dsc-phase-4-project/blob/main/images/conf_matrix.png)
 
 ## Summary & Recommendation
 
